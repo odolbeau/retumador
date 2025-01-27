@@ -10,6 +10,8 @@ services:
 
   nginx:
     image: nginx:latest
+    ports:
+      - '8084:80'
     volumes:
       - ./public:/var/www
       - ./.docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
