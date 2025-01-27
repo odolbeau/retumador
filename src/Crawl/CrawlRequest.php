@@ -9,9 +9,21 @@ use Symfony\Component\Validator\Constraints as Assert;
 final class CrawlRequest
 {
     #[Assert\NotNull]
+    public string $name;
+
+    #[Assert\NotNull]
     #[Assert\Url]
     public string $url;
 
     #[Assert\NotNull]
-    public string $title;
+    public Browser $browser = Browser::BASIC;
+
+    #[Assert\NotNull]
+    public string $itemSelector;
+
+    #[Assert\NotNull]
+    public string $titleSelector;
+
+    #[Assert\NotNull]
+    public string $linkSelector;
 }

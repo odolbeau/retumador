@@ -1,0 +1,4 @@
+services:
+  nginx:
+    ports:
+      - '8084:80'

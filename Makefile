@@ -11,6 +11,7 @@ help:
 install: build start vendors-install ## Start the docker stack and prepare the application
 	@echo "\033[32m🥳 EVERYTHING IS RUNNING! 🥳\033[0m"
 	@echo "\033[32mLaunch "bin/console retumador" to continue.\033[0m"
+	@echo "\033[32mGenerated feeds will be available on http://localhost:8084.\033[0m"
 
 vendors-install: ## Install vendors
 	@$(DOCKER_COMPOSE) exec php composer ins
