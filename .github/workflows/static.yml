@@ -1,0 +1,126 @@
+on: [pull_request]
+
+name: Static analysis
+
+jobs:
+  phpstan:
+    name: PHPStan
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.3
+
+      - name: Download dependencies
+        uses: ramsey/composer-install@v3
+
+      - name: Install PHPStan
+        uses: ramsey/composer-install@v3
+        with:
+          composer-options: "--working-dir=tools/phpstan"
+
+      - name: PHPStan
+        run: tools/phpstan/vendor/bin/phpstan analyze --no-progress --error-format=checkstyle
+
+  php-cs-fixer:
+    name: PHP-CS-Fixer
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.3
+
+      - name: Install php-cs-fixer
+        uses: ramsey/composer-install@v3
+        with:
+          composer-options: "--working-dir=tools/php-cs-fixer"
+
+      - name: PHP-CS-Fixer
+        run: tools/php-cs-fixer/vendor/bin/php-cs-fixer fix --dry-run --diff --config=.php-cs-fixer.dist.php
+
+  twig-cs-fixer:
+    name: Twig CS Fixer
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.3
+
+      - name: Install twig-cs-fixer
+        uses: ramsey/composer-install@v3
+        with:
+          composer-options: "--working-dir=tools/twig-cs-fixer"
+
+      - name: Twig CS Fixer
+        run: tools/twig-cs-fixer/vendor/bin/twig-cs-fixer lint
+
+  linters:
+    name: 🧹 Linters
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.3
+
+      - name: Download dependencies
+        uses: ramsey/composer-install@v3
+
+      - name: Lint YAML files
+        shell: bash
+        run: bin/console lint:yaml config --parse-tags
+
+      - name: Lint Parameters and Services
+        shell: bash
+        run: bin/console lint:container --no-debug
+
+      - name: Lint Composer config
+        shell: bash
+        run: composer validate
+
+      - name: Check that PSR is respected
+        shell: bash
+        run: composer dump-autoload --dev -o --dry-run --strict-psr
+
+  audit:
+    name: 🔍 Audit vendors
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.3
+
+      - name: Download dependencies
+        uses: ramsey/composer-install@v3
+
+      - name: Check whether a PHP dependency is compromised
+        shell: bash
+        run: composer audit
+
+      - name: Check whether a front dependency is compromised
+        shell: bash
+        run: bin/console importmap:audit
