@@ -4,14 +4,18 @@ ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/relea
 
 RUN install-php-extensions apcu intl opcache xsl zip
 
-COPY custom-config.ini /usr/local/etc/php/conf.d/custom-config.ini
-
 WORKDIR /var/www
+
+# Base php.ini
+COPY --link <<EOF /usr/local/etc/php/conf.d/retumador.ini
+date.timezone=Europe/London
+memory_limit=-1
+EOF
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Chromium and ChromeDriver
-ENV PANTHER_NO_SANDBOX 1
+ENV PANTHER_NO_SANDBOX=1
 # Not mandatory, but recommended
 ENV PANTHER_CHROME_ARGUMENTS='--disable-dev-shm-usage'
 RUN apk add --no-cache chromium chromium-chromedriver
