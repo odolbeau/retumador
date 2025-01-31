@@ -1,6 +1,8 @@
 {
     "type": "project",
-    "license": "proprietary",
+    "name": "odolbeau/retumador",
+    "description": "A CLI tool to generate RSS feed for (almost) any website",
+    "license": "MIT",
     "minimum-stability": "stable",
     "prefer-stable": true,
     "require": {
