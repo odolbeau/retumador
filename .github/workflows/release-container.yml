@@ -2,9 +2,12 @@ name: release-container
 
 on:
   push:
+    branches:
+      - main
 
 jobs:
   docker:
+    name: 🚀 Publish container on hub.docker.com
     runs-on: ubuntu-latest
     steps:
       -
