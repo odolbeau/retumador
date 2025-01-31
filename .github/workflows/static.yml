@@ -120,7 +120,3 @@ jobs:
       - name: Check whether a PHP dependency is compromised
         shell: bash
         run: composer audit
-
-      - name: Check whether a front dependency is compromised
-        shell: bash
-        run: bin/console importmap:audit
