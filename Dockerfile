@@ -11,9 +11,6 @@ date.timezone=Europe/London
 memory_limit=-1
 EOF
 
-WORKDIR /var/www
-COPY . /var/www
-
 # Chromium and ChromeDriver
 ENV PANTHER_NO_SANDBOX=1
 # Not mandatory, but recommended
@@ -26,5 +23,8 @@ RUN apk add --no-cache firefox libzip-dev;
 RUN wget -q https://github.com/mozilla/geckodriver/releases/download/v$GECKODRIVER_VERSION/geckodriver-v$GECKODRIVER_VERSION-linux64.tar.gz; \
     tar -zxf geckodriver-v$GECKODRIVER_VERSION-linux64.tar.gz -C /usr/bin; \
     rm geckodriver-v$GECKODRIVER_VERSION-linux64.tar.gz
+
+WORKDIR /var/www
+COPY . /var/www
 
 ENTRYPOINT ["./retumador"]
