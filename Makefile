@@ -14,12 +14,12 @@ install: build start vendors-install ## Start the docker stack and prepare the a
 	@echo "\033[32mGenerated feeds will be available on http://localhost:8084.\033[0m"
 
 vendors-install: ## Install vendors
-	@$(DOCKER_COMPOSE) exec php composer ins
+	@$(DOCKER_COMPOSE) run --rm php composer ins
 
 vendors-update: ## Update all vendors
-	@$(DOCKER_COMPOSE) run php composer up
-	@$(DOCKER_COMPOSE) run php composer --working-dir tools/php-cs-fixer up
-	@$(DOCKER_COMPOSE) run php composer --working-dir tools/phpstan up
+	@$(DOCKER_COMPOSE) run --rm php composer up
+	@$(DOCKER_COMPOSE) run --rm php composer --working-dir tools/php-cs-fixer up
+	@$(DOCKER_COMPOSE) run --rm php composer --working-dir tools/phpstan up
 
 ##@ Docker commands
 build: ## Build docker stack
@@ -34,24 +34,21 @@ stop: ## Stop the docker stack
 destroy: ## Destroy all containers, volumes, networks, ...
 	@$(DOCKER_COMPOSE) down --remove-orphans --volumes --rmi=local
 
-bash: ## Enter in the application container directly
-	@$(DOCKER_COMPOSE) exec php /bin/bash
-
 ##@ Quality commands
 test: ## Run all tests
-	@$(DOCKER_COMPOSE) run php vendor/bin/phpunit
+	@$(DOCKER_COMPOSE) run --rm php vendor/bin/phpunit
 
 phpstan: tools/phpstan/vendor ## Run PHPStan
-	@$(DOCKER_COMPOSE) run php tools/phpstan/vendor/bin/phpstan analyse --memory-limit=512M
+	@$(DOCKER_COMPOSE) run --rm php tools/phpstan/vendor/bin/phpstan analyse --memory-limit=512M
 
 cs-lint: tools/php-cs-fixer/vendor ## Lint all files
-	@$(DOCKER_COMPOSE) run php bin/console lint:yaml config/
-	@$(DOCKER_COMPOSE) run php tools/php-cs-fixer/vendor/bin/php-cs-fixer fix --dry-run --diff
+	@$(DOCKER_COMPOSE) run --rm php bin/console lint:yaml config/
+	@$(DOCKER_COMPOSE) run --rm php tools/php-cs-fixer/vendor/bin/php-cs-fixer fix --dry-run --diff
 
 cs-fix: tools/php-cs-fixer/vendor ## Fix CS using PHP-CS
-	@$(DOCKER_COMPOSE) run php tools/php-cs-fixer/vendor/bin/php-cs-fixer fix
+	@$(DOCKER_COMPOSE) run --rm php tools/php-cs-fixer/vendor/bin/php-cs-fixer fix
 
 tools/php-cs-fixer/vendor: tools/php-cs-fixer/composer.json tools/php-cs-fixer/composer.lock
-	@$(DOCKER_COMPOSE) run php composer install --working-dir=tools/php-cs-fixer
+	@$(DOCKER_COMPOSE) run --rm php composer install --working-dir=tools/php-cs-fixer
 tools/phpstan/vendor: tools/phpstan/composer.json tools/phpstan/composer.lock
-	@$(DOCKER_COMPOSE) run php composer install --working-dir=tools/phpstan
+	@$(DOCKER_COMPOSE) run --rm php composer install --working-dir=tools/phpstan
