@@ -12,10 +12,10 @@ use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
-use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Panther\Client as PantherClient;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Exception\ValidationFailedException;
@@ -35,8 +35,6 @@ final class CrawlCommand extends Command
         private readonly ValidatorInterface $validator,
         private readonly HttpClientInterface $client,
         private readonly Environment $twig,
-        #[Autowire('%kernel.project_dir%')]
-        private readonly string $kernelProjectDir,
     ) {
         parent::__construct();
     }
@@ -44,7 +42,8 @@ final class CrawlCommand extends Command
     protected function configure(): void
     {
         $this
-            ->addArgument('file', InputArgument::REQUIRED, 'Path of the file containing all instructions for crawl')
+            ->addArgument('config-file', InputArgument::REQUIRED, 'Path of the file containing all instructions for crawl')
+            ->addOption('output-file', 'o', InputOption::VALUE_REQUIRED, 'Path for the generated feed.', sys_get_temp_dir().'/retumador-rss.xml')
         ;
     }
 
@@ -52,7 +51,7 @@ final class CrawlCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
         /** @var string $file */
-        $file = $input->getArgument('file');
+        $file = $input->getArgument('config-file');
 
         if (!file_exists($file)) {
             throw new \InvalidArgumentException('Given file does not exists.');
@@ -110,9 +109,10 @@ final class CrawlCommand extends Command
             ];
         }
 
-        $id = md5($crawlRequest->url);
+        /** @var string $outputFile */
+        $outputFile = $input->hasOption('output-file') ? $input->getOption('output-file') : sys_get_temp_dir().'/retumador-rss.xml';
 
-        file_put_contents($this->kernelProjectDir."/public/$id.rss.xml", $this->twig->render('rss.xml.twig', [
+        file_put_contents($outputFile, $this->twig->render('rss.xml.twig', [
             'title' => $crawlRequest->name,
             'link' => $crawlRequest->url,
             'items' => $items,
