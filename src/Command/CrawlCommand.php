@@ -14,6 +14,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Panther\Client as PantherClient;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -26,6 +27,7 @@ use Twig\Environment;
     name: 'retumador:crawl',
     description: 'Add a short description for your command',
 )]
+#[Autoconfigure(public: true)]
 final class CrawlCommand extends Command
 {
     public function __construct(

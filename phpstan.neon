@@ -2,6 +2,7 @@ parameters:
     level: max
 
     paths:
+      - retumador
       - src
       - tests
 
