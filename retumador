@@ -1,8 +1,8 @@
 #!/usr/bin/env php
 <?php
 
-use Retamador\Kernel;
-use Retamador\Command\CrawlCommand;
+use Retumador\Kernel;
+use Retumador\Command\CrawlCommand;
 use Symfony\Component\Console\SingleCommandApplication;
 use Symfony\Component\Console\Application;
 

@@ -42,12 +42,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Retamador\\": "src/"
+            "Retumador\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Retamador\\Tests\\": "tests/"
+            "Retumador\\Tests\\": "tests/"
         }
     },
     "replace": {

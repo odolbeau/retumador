@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Retamador;
+namespace Retumador;
 
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;

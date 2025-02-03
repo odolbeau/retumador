@@ -16,3 +16,4 @@
 
 /tools/*/vendor
 /.phpstan-cache
+/.twig-cs-fixer.cache

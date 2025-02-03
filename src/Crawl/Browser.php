@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Retamador\Crawl;
+namespace Retumador\Crawl;
 
 enum Browser: string
 {
