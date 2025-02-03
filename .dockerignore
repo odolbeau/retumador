@@ -1,4 +1,5 @@
 .git
+.github
 .gitignore
 .dockerignore
 README.md
@@ -6,3 +7,6 @@ Dockerfile
 .DS_Store
 /var/cache/*
 /var/log/*
+/tests/*
+/tools
+.docker
