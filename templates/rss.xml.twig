@@ -4,15 +4,15 @@
     <link>{{ link }}</link>
     <description>{{ description|default(null) }}</description>
     <generator>Retumador</generator>
-    <lastBuildDate>{{ 'now'|date('D, d M y H:i:s O') }}</lastBuildDate>
+    <lastBuildDate>{{ 'now'|date('D, d M Y H:i:s O') }}</lastBuildDate>
     {% for item in items %}
     <item>
         <title>{{ item.title }}</title>
         <link>{{ item.link }}</link>
         <description>{{ item.description }}</description>
         <enclosure url="http://www.nasa.gov/sites/default/files/styles/1x1_cardfeed/public/thumbnails/image/spacex_dragon_june_29.jpg?itok=nIYlBLme" length="269866" type="image/jpeg"/>
-        <pubDate>{{ item.publicationDate|date('D, d M y H:i:s O') }}</pubDate>
-        <guid>{{ item.id }}</guid>
+        <pubDate>{{ item.publicationDate|date('D, d M Y H:i:s O') }}</pubDate>
+        <guid>{{ item.link }}</guid>
     </item>
     {% endfor %}
 </channel>

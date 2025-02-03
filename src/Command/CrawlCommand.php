@@ -102,10 +102,9 @@ final class CrawlCommand extends Command
 
             $items[] = [
                 'title' => $title,
-                'link' => $link,
+                'link' => $this->sanitizeLink($crawlRequest, $link),
                 'description' => $document->saveHTML($node),
                 'publicationDate' => new \DateTimeImmutable(),
-                'id' => md5($title.$link),
             ];
         }
 
@@ -133,5 +132,16 @@ final class CrawlCommand extends Command
         }
 
         return $childNode->textContent;
+    }
+
+    private function sanitizeLink(CrawlRequest $crawlRequest, string $link): string
+    {
+        if (str_starts_with($link, 'http')) {
+            return $link;
+        }
+
+        $urlParts = parse_url($crawlRequest->url);
+
+        return $urlParts['scheme']."://".$urlParts['host'].$link;
     }
 }

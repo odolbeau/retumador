@@ -12,7 +12,7 @@ final class CrawlRequest
     public string $name;
 
     #[Assert\NotNull]
-    #[Assert\Url]
+    #[Assert\Url(requireTld: true)]
     public string $url;
 
     #[Assert\NotNull]
