@@ -26,4 +26,6 @@ final class CrawlRequest
 
     #[Assert\NotNull]
     public string $linkSelector;
+
+    public string $imageSelector = './/img/@src';
 }

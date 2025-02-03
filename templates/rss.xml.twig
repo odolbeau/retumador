@@ -10,7 +10,9 @@
         <title>{{ item.title }}</title>
         <link>{{ item.link }}</link>
         <description>{{ item.description }}</description>
-        <enclosure url="http://www.nasa.gov/sites/default/files/styles/1x1_cardfeed/public/thumbnails/image/spacex_dragon_june_29.jpg?itok=nIYlBLme" length="269866" type="image/jpeg"/>
+        {% if item.image is not null %}
+            <enclosure url="{{ item.image }}" type="image/jpeg" />
+        {% endif %}
         <pubDate>{{ item.publicationDate|date('D, d M Y H:i:s O') }}</pubDate>
         <guid>{{ item.link }}</guid>
     </item>

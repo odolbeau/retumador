@@ -99,12 +99,14 @@ final class CrawlCommand extends Command
         foreach ($nodes as $node) {
             $title = $this->extractContent($xpath, $node, $crawlRequest->titleSelector);
             $link = $this->extractContent($xpath, $node, $crawlRequest->linkSelector);
+            $image = null !== $crawlRequest->imageSelector ? $this->extractContent($xpath, $node, $crawlRequest->imageSelector) : null;
 
             $items[] = [
                 'title' => $title,
                 'link' => $this->sanitizeLink($crawlRequest, $link),
                 'description' => $document->saveHTML($node),
                 'publicationDate' => new \DateTimeImmutable(),
+                'image' => $image,
             ];
         }
 
