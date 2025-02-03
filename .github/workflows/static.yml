@@ -2,10 +2,6 @@ on: [pull_request]
 
 name: Static analysis
 
-env:
-  APP_ENV: prod
-  APP_DEBUG: false
-
 jobs:
   phpstan:
     name: PHPStan

@@ -21,6 +21,9 @@ jobs:
 
       - name: Download dependencies
         uses: ramsey/composer-install@v3
+        env:
+          APP_ENV: prod
+          APP_DEBUG: false
         with:
           composer-options: "--no-dev --optimize-autoloader"
 
