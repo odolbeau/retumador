@@ -27,4 +27,7 @@ RUN wget -q https://github.com/mozilla/geckodriver/releases/download/v$GECKODRIV
 WORKDIR /var/www
 COPY . /var/www
 
+ENV APP_ENV=prod
+ENV APP_DEBUG=false
+
 ENTRYPOINT ["./retumador"]
