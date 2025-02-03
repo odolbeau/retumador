@@ -8,7 +8,7 @@ use Symfony\Component\BrowserKit\HttpBrowser;
 use Symfony\Component\Panther\Client as PantherClient;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
-final readonly class Crawler
+readonly class Crawler
 {
     public function __construct(
         private HttpClientInterface $client,

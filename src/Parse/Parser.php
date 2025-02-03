@@ -6,6 +6,13 @@ namespace Retumador\Parse;
 
 final readonly class Parser
 {
+    private DateTimeSanitizer $dateTimeSanitizer;
+
+    public function __construct(?DateTimeSanitizer $dateTimeSanitizer = null,
+    ) {
+        $this->dateTimeSanitizer = $dateTimeSanitizer ?? new DateTimeSanitizer();
+    }
+
     /** @return Item[] */
     public function parse(string $content, Selectors $selectors, string $baseUrl): array
     {
@@ -32,7 +39,7 @@ final readonly class Parser
                 title: $title,
                 link: $this->sanitizeLink($baseUrl, $link),
                 description: $description ?: '',
-                publicationDate: new \DateTimeImmutable(),
+                publicationDate: $this->dateTimeSanitizer->sanitize(),
                 image: $image,
             );
         }
