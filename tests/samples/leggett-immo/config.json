@@ -1,0 +1,10 @@
+{
+    "name": "Leggett Immo",
+    "url": "https://www.leggett-immo.com/acheter-vendre-une-maison/mainSearch/departments:/towns:23210_Marsac/rayon:5/primarypropertytype_id:1/min_land:/max_land:/min_habitable:/max_habitable:/ancien:1/neuf:1",
+    "browser": "firefox",
+    "selectors": {
+        "item": "//div[contains(@class, 'result-item ')]",
+        "title": ".//p[contains(@class, 'result-item-description ')]",
+        "content": ".//p[contains(@class, 'result-item-description-highlighted')]"
+    }
+}

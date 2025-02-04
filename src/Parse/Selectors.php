@@ -17,4 +17,6 @@ final class Selectors
     public string $link = './/a/@href';
 
     public string $image = './/img/@src';
+
+    public string $content = '.';
 }
