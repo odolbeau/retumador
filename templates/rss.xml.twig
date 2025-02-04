@@ -1,10 +1,12 @@
+{# Use latest item date in order to not change the lastBuildDate at each run #}
+{% set lastBuildDate = items|length > 0 ? (items|first).publicationDate : 'now' %}
 <rss version="2.0">
 <channel>
     <title>{{ title }}</title>
     <link>{{ link }}</link>
     <description>{{ description|default(null) }}</description>
     <generator>Retumador</generator>
-    <lastBuildDate>{{ 'now'|date('D, d M Y H:i:s O') }}</lastBuildDate>
+    <lastBuildDate>{{ lastBuildDate|date('D, d M Y H:i:s O') }}</lastBuildDate>
     {% for item in items %}
     <item>
         <title>{{ item.title }}</title>

@@ -27,7 +27,7 @@ final class CrawlCommandTest extends KernelTestCase
         self::getContainer()->set(Crawler::class, $crawler);
 
         $dateTimeSanitizer = $this->createMock(DateTimeSanitizer::class);
-        $dateTimeSanitizer->method('sanitize')->willReturn(new \DateTimeImmutable('Mon, 03 Feb 2025 18:43:42 +0000'));
+        $dateTimeSanitizer->method('sanitize')->willReturn(new \DateTimeImmutable('Tue, 04 Feb 2025 18:32:35 +0000'));
         self::getContainer()->set(DateTimeSanitizer::class, $dateTimeSanitizer);
 
         // Act
@@ -45,7 +45,6 @@ final class CrawlCommandTest extends KernelTestCase
         $commandTester->assertCommandIsSuccessful();
 
         self::assertFileExists($outputFile);
-        // TODO: improve test (or feed generation?) to get rid of date problem
-        // self::assertSame(file_get_contents($outputFile), file_get_contents("$sampleDirectory/rss.xml"));
+        self::assertSame(file_get_contents("$sampleDirectory/rss.xml"), file_get_contents($outputFile));
     }
 }
