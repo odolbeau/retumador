@@ -1,0 +1,9 @@
+{
+    "name": "La Montagne",
+    "url": "https://www.lamontagne.fr/immobilier/recherche/&transaction=sell&localization=Marsac%20(23210)&extends=5&type=house,terrain,other#iss=https%3A%2F%2Fmoncompte.centrefrance.com%2Fauth%2Frealms%2FCentreFrance&iss=https%3A%2F%2Fmoncompte.centrefrance.com%2Fauth%2Frealms%2FCentreFrance&iss=https%3A%2F%2Fmoncompte.centrefrance.com%2Fauth%2Frealms%2FCentreFrance&iss=https%3A%2F%2Fmoncompte.centrefrance.com%2Fauth%2Frealms%2FCentreFrance&iss=https%3A%2F%2Fmoncompte.centrefrance.com%2Fauth%2Frealms%2FCentreFrance&iss=https%3A%2F%2Fmoncompte.centrefrance.com%2Fauth%2Frealms%2FCentreFrance&iss=https%3A%2F%2Fmoncompte.centrefrance.com%2Fauth%2Frealms%2FCentreFrance&iss=https%3A%2F%2Fmoncompte.centrefrance.com%2Fauth%2Frealms%2FCentreFrance",
+    "browser": "firefox",
+    "selectors": {
+        "item": "//div[@class=\"row property-item-list\"]",
+        "title": ".//h6"
+    }
+}

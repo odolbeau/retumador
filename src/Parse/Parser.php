@@ -25,7 +25,7 @@ final readonly class Parser
         $xpath = new \DOMXPath($document);
 
         if (false === $nodes = $xpath->query($selectors->item)) {
-            throw new \RuntimeException('Unable to find articles with given selector');
+            throw new \RuntimeException('Given selector to find items looks invalid');
         }
 
         $items = [];
@@ -56,7 +56,7 @@ final readonly class Parser
             throw new \RuntimeException('No node matching the given selector');
         }
 
-        return $childNode->textContent;
+        return trim($childNode->textContent);
     }
 
     private function sanitizeLink(string $baseUrl, string $link): string
