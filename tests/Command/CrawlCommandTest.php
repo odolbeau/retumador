@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Retumador\Tests\Parse;
+namespace Retumador\Tests\Command;
 
 use PHPUnit\Framework\Attributes\DataProvider;
 use Retumador\Crawl\Crawler;
