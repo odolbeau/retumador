@@ -97,7 +97,7 @@ EOF
             $feedName = $file->getFilenameWithoutExtension();
             $this->logger->debug("Start to handle feed \"$feedName\".");
 
-            $outputFile = "{$outputDirectory}/{$feedName}-rss.xml";
+            $outputFile = "{$outputDirectory}/{$feedName}.rss.xml";
 
             if (file_exists($outputFile) && filemtime($outputFile) > $expirationTime) {
                 $this->logger->debug('Feed is not expired, skip generation.');

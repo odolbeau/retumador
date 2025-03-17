@@ -34,7 +34,7 @@ final class CrawlCommand extends Command
     {
         $this
             ->addArgument('config-file', InputArgument::REQUIRED, 'Path of the file containing all instructions for crawl')
-            ->addOption('output-file', 'o', InputOption::VALUE_REQUIRED, 'Path for the generated feed.', sys_get_temp_dir().'/retumador-rss.xml')
+            ->addOption('output-file', 'o', InputOption::VALUE_REQUIRED, 'Path for the generated feed.', sys_get_temp_dir().'/retumador.rss.xml')
         ;
     }
 
@@ -55,7 +55,7 @@ final class CrawlCommand extends Command
         $feed = $this->feedBuilder->build($feedRequest);
 
         /** @var string $outputFile */
-        $outputFile = $input->hasOption('output-file') ? $input->getOption('output-file') : sys_get_temp_dir().'/retumador-rss.xml';
+        $outputFile = $input->hasOption('output-file') ? $input->getOption('output-file') : sys_get_temp_dir().'/retumador.rss.xml';
 
         file_put_contents($outputFile, $feed);
 
