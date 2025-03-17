@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Retumador\Tests\Parse;
+namespace Retumador\Tests\Command;
 
 use PHPUnit\Framework\Attributes\DataProvider;
 use Retumador\Crawl\Crawler;
@@ -34,7 +34,7 @@ final class CrawlCommandTest extends KernelTestCase
 
         // Act
         /* @phpstan-ignore argument.type */
-        $command = (new Application(self::$kernel))->find('retumador:crawl');
+        $command = (new Application(self::$kernel))->find('crawl');
         $commandTester = new CommandTester($command);
         $commandTester->execute([
             // pass arguments to the helper

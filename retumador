@@ -2,9 +2,7 @@
 <?php
 
 use Retumador\Kernel;
-use Retumador\Command\CrawlCommand;
-use Symfony\Component\Console\SingleCommandApplication;
-use Symfony\Component\Console\Application;
+use Retumador\Application;
 
 if (!is_dir(__DIR__.'/vendor')) {
     throw new LogicException('Dependencies are missing. Try running "composer install".');
@@ -19,14 +17,6 @@ require_once __DIR__.'/vendor/autoload_runtime.php';
 return function (array $context) {
     /* @phpstan-ignore argument.type */
     $kernel = new Kernel($context['APP_ENV'], (bool) $context['APP_DEBUG']);
-    $kernel->boot();
 
-    /** @var CrawlCommand $command */
-    $command = $kernel->getContainer()->get(CrawlCommand::class);
-
-    $application = new Application('Retumador', '0.1');
-    $application->add($command);
-    $application->setDefaultCommand((string) $command->getName(), true);
-
-    return $application;
+    return new Application($kernel);
 };

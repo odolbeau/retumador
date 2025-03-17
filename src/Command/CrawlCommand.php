@@ -17,8 +17,8 @@ use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
 use Symfony\Component\Serializer\SerializerInterface;
 
 #[AsCommand(
-    name: 'retumador:crawl',
-    description: 'Add a short description for your command',
+    name: 'crawl',
+    description: 'Generate a single RSS feed according to the given configuration file',
 )]
 #[Autoconfigure(public: true)]
 final class CrawlCommand extends Command
