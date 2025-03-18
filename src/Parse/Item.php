@@ -11,7 +11,7 @@ final readonly class Item
         public string $link,
         public string $description,
         public \DateTimeImmutable $publicationDate,
-        public string $image,
+        public ?string $image,
     ) {
     }
 }

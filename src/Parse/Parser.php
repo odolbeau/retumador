@@ -4,13 +4,20 @@ declare(strict_types=1);
 
 namespace Retumador\Parse;
 
+use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
+
 final readonly class Parser
 {
     private DateTimeSanitizer $dateTimeSanitizer;
+    private readonly LoggerInterface $logger;
 
-    public function __construct(?DateTimeSanitizer $dateTimeSanitizer = null,
+    public function __construct(
+        ?DateTimeSanitizer $dateTimeSanitizer = null,
+        ?LoggerInterface $logger = null,
     ) {
         $this->dateTimeSanitizer = $dateTimeSanitizer ?? new DateTimeSanitizer();
+        $this->logger = $logger ?? new NullLogger();
     }
 
     /** @return Item[] */
@@ -32,7 +39,14 @@ final readonly class Parser
         foreach ($nodes as $node) {
             $title = $this->extractContent($xpath, $node, $selectors->title);
             $link = $this->extractContent($xpath, $node, $selectors->link);
-            $image = $this->extractContent($xpath, $node, $selectors->image);
+            try {
+                $image = $this->extractContent($xpath, $node, $selectors->image);
+            } catch (\RuntimeException $e) {
+                $this->logger->warning('No image found.', [
+                    'node' => $xpath->document->saveHTML($node),
+                    'selector' => $selectors->image,
+                ]);
+            }
             $description = $this->extractHTML($xpath, $node, $selectors->content);
 
             $items[] = new Item(
@@ -40,7 +54,7 @@ final readonly class Parser
                 link: $this->sanitizeLink($baseUrl, $link),
                 description: $description ?: '',
                 publicationDate: $this->dateTimeSanitizer->sanitize(),
-                image: $image,
+                image: $image ?? null,
             );
         }
 
