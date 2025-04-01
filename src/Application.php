@@ -19,7 +19,6 @@ class Application extends BaseApplication
     ) {
         parent::__construct($kernel);
         $this->setName('Retumador');
-        $this->setDefaultCommand('crawl');
     }
 
     protected function registerCommands(): void
