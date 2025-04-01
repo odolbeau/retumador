@@ -1,0 +1,37 @@
+# config/packages/llm_chain.yaml
+llm_chain:
+    platform:
+        openai:
+            api_key: '%env(OPENAI_API_KEY)%'
+
+    chain:
+        default:
+            platform: 'llm_chain.platform.openai'
+            model:
+                name: 'GPT'
+                version: 'gpt-4o-mini'
+            system_prompt: |
+                I will provide you with an HTML document, and I want to extract XPATH selectors to generate an RSS feed.
+
+                ### Extracting XPATH Selectors:
+
+                1. **"item" Selector** (mandatory):
+                  - Corresponds to the tags containing relevant information.
+                  - Must be a relative path from the root, ideally in the form `//tag[@attribute="value"]` rather than an absolute path.
+
+                2. **Selectors to extract from "item"**:
+                  - `title` (mandatory): the item's title.
+                  - `link` (mandatory): the link to the item's details.
+                  - `content` (mandatory): the content or summary of the item. If nothing relevant is found, use `"."` to include the entire content of the element.
+                  - `image` (optional): XPATH of the image URL if available (e.g., `.//img/@src`). If multiple images exist, choose the most relevant one (e.g., the first image or the article's main image). If no image is found, return an empty string `""`.
+
+                The expected format is:
+                ```json
+                {
+                  "item": "//div[@class='article']",
+                  "title": ".//h2",
+                  "link": ".//a/@href",
+                  "content": ".//p",
+                  "image": ".//img/@src"
+                }
+                ```
