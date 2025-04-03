@@ -27,7 +27,7 @@ final readonly class FeedBuilder
             throw new ValidationFailedException($feedRequest, $violations);
         }
 
-        $content = $this->crawler->crawl($feedRequest->url, $feedRequest->browser);
+        $content = $this->crawler->crawl($feedRequest->url, $feedRequest->browser, $feedRequest->waitFor);
 
         $items = $this->parser->parse($content, $feedRequest->selectors, $feedRequest->getBaseUrl());
 

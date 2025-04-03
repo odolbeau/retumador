@@ -6,6 +6,7 @@ namespace Retumador;
 
 use Retumador\Crawl\Browser;
 use Retumador\Parse\Selectors;
+use Symfony\Component\Serializer\Attribute\SerializedName;
 use Symfony\Component\Validator\Constraints as Assert;
 
 final class FeedRequest
@@ -19,6 +20,9 @@ final class FeedRequest
 
     #[Assert\NotNull]
     public Browser $browser = Browser::BASIC;
+
+    #[SerializedName('wait_for')]
+    public ?string $waitFor = null;
 
     #[Assert\Valid]
     public Selectors $selectors;
