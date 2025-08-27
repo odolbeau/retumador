@@ -42,6 +42,9 @@ destroy: ## Destroy all containers, volumes, networks, ...
 	@$(DOCKER_COMPOSE) down --remove-orphans --volumes --rmi=local
 
 ##@ Quality commands
+.PHONY: sanitize-and-check
+sanitize-and-check: cs-fix phpstan test ## Run PHP-CS-fixer, PHPStan & tests
+
 .PHONY: test
 test: ## Run all tests
 	@$(DOCKER_COMPOSE) run --rm php vendor/bin/phpunit
