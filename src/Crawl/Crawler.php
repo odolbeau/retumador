@@ -6,15 +6,19 @@ namespace Retumador\Crawl;
 
 use Psr\Log\LoggerInterface;
 use Symfony\Component\BrowserKit\HttpBrowser;
+use Symfony\Component\HttpClient\NoPrivateNetworkHttpClient;
 use Symfony\Component\Panther\Client as PantherClient;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 readonly class Crawler
 {
+    private HttpClientInterface $client;
+
     public function __construct(
-        private HttpClientInterface $client,
+        HttpClientInterface $client,
         private LoggerInterface $logger,
     ) {
+        $this->client = new NoPrivateNetworkHttpClient($client);
     }
 
     /**
