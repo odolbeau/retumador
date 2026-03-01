@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Retumador;
 
-use Retumador\Command\AIGenerateConfigCommand;
 use Retumador\Command\CrawlCommand;
 use Retumador\Command\WatchCommand;
 use Symfony\Bundle\FrameworkBundle\Console\Application as BaseApplication;
@@ -37,13 +36,12 @@ class Application extends BaseApplication
         $commandClasses = [
             CrawlCommand::class,
             WatchCommand::class,
-            AIGenerateConfigCommand::class,
         ];
 
         foreach ($commandClasses as $commandClass) {
             /** @var Command */
             $command = $container->get($commandClass);
-            $this->add($command);
+            $this->addCommand($command);
         }
     }
 }

@@ -1,4 +1,4 @@
-FROM php:8.3-cli-alpine
+FROM php:8.4-cli-alpine
 
 LABEL org.opencontainers.image.authors="olivier@bbnt.me"
 

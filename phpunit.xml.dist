@@ -6,6 +6,11 @@
          backupGlobals="false"
          colors="true"
          bootstrap="tests/bootstrap.php"
+         failOnNotice="true"
+         failOnWarning="true"
+         failOnPhpunitDeprecation="true"
+         displayDetailsOnPhpunitDeprecations="true"
+         displayDetailsOnPhpunitNotices="true"
 >
     <php>
         <ini name="display_errors" value="1" />

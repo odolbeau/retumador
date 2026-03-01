@@ -37,6 +37,8 @@ final readonly class Parser
 
         $items = [];
         foreach ($nodes as $node) {
+            \assert($node instanceof \DOMNode);
+
             $title = $this->extractContent($xpath, $node, $selectors->title);
             $link = $this->extractContent($xpath, $node, $selectors->link);
             try {
@@ -71,6 +73,7 @@ final readonly class Parser
 
             throw new \RuntimeException("No node matching the given selector ($selector) inside \"$nodeHTML\"");
         }
+        \assert($childNode instanceof \DOMNode);
 
         return trim($childNode->textContent);
     }
@@ -85,6 +88,7 @@ final readonly class Parser
 
             throw new \RuntimeException("No node matching the given selector ($selector) inside \"$nodeHTML\"");
         }
+        \assert($childNode instanceof \DOMNode);
 
         if (false === $html = $xpath->document->saveHTML($childNode)) {
             throw new \RuntimeException('Unable to export node into HTML.');

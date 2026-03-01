@@ -24,11 +24,11 @@ final class CrawlCommandTest extends KernelTestCase
         /* @phpstan-ignore binaryOp.invalid */
         $outputFile = self::getContainer()->getParameter('kernel.cache_dir')."/$sample.rss.xml";
 
-        $crawler = $this->createMock(Crawler::class);
+        $crawler = $this->createStub(Crawler::class);
         $crawler->method('crawl')->willReturn(file_get_contents("$sampleDirectory/response.html"));
         self::getContainer()->set(Crawler::class, $crawler);
 
-        $dateTimeSanitizer = $this->createMock(DateTimeSanitizer::class);
+        $dateTimeSanitizer = $this->createStub(DateTimeSanitizer::class);
         $dateTimeSanitizer->method('sanitize')->willReturn($sampleGeneratedAt);
         self::getContainer()->set(DateTimeSanitizer::class, $dateTimeSanitizer);
 
