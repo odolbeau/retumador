@@ -14,7 +14,7 @@ final class Selectors
     #[Assert\NotNull]
     public string $title;
 
-    public string $link = './/a/@href';
+    public string $link = './/@href';
 
     public string $image = './/img/@src';
 
