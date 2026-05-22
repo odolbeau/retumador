@@ -118,11 +118,11 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "2.1.40",
+            "version": "2.1.55",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/9b2c7aeb83a75d8680ea5e7c9b7fca88052b766b",
-                "reference": "9b2c7aeb83a75d8680ea5e7c9b7fca88052b766b",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/9eaac3826ed5e9b8427350a43cac825eeca3f566",
+                "reference": "9eaac3826ed5e9b8427350a43cac825eeca3f566",
                 "shasum": ""
             },
             "require": {
@@ -167,7 +167,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-02-23T15:04:35+00:00"
+            "time": "2026-05-18T11:57:34+00:00"
         },
         {
             "name": "phpstan/phpstan-deprecation-rules",
@@ -221,16 +221,16 @@
         },
         {
             "name": "phpstan/phpstan-doctrine",
-            "version": "2.0.18",
+            "version": "2.0.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan-doctrine.git",
-                "reference": "44a216a5cd9fe52be489dcf1e2d565c473daa1ca"
+                "reference": "e87516b034749432d51653c0147e053e476e8c53"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan-doctrine/zipball/44a216a5cd9fe52be489dcf1e2d565c473daa1ca",
-                "reference": "44a216a5cd9fe52be489dcf1e2d565c473daa1ca",
+                "url": "https://api.github.com/repos/phpstan/phpstan-doctrine/zipball/e87516b034749432d51653c0147e053e476e8c53",
+                "reference": "e87516b034749432d51653c0147e053e476e8c53",
                 "shasum": ""
             },
             "require": {
@@ -264,6 +264,7 @@
                 "phpstan/phpstan-strict-rules": "^2.0",
                 "phpunit/phpunit": "^9.6.20",
                 "ramsey/uuid": "^4.2",
+                "shipmonk/name-collision-detector": "^2.1",
                 "symfony/cache": "^5.4",
                 "symfony/uid": "^5.4 || ^6.4 || ^7.3"
             },
@@ -291,9 +292,9 @@
             ],
             "support": {
                 "issues": "https://github.com/phpstan/phpstan-doctrine/issues",
-                "source": "https://github.com/phpstan/phpstan-doctrine/tree/2.0.18"
+                "source": "https://github.com/phpstan/phpstan-doctrine/tree/2.0.22"
             },
-            "time": "2026-02-24T10:01:00+00:00"
+            "time": "2026-05-09T08:10:48+00:00"
         },
         {
             "name": "phpstan/phpstan-phpunit",
@@ -353,16 +354,16 @@
         },
         {
             "name": "phpstan/phpstan-symfony",
-            "version": "2.0.15",
+            "version": "2.0.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan-symfony.git",
-                "reference": "9b85ab476969b87bbe2253b69e265a9359b2f395"
+                "reference": "a12176b639dec54e8bfd0a5ebf5fc36ffe003b5d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan-symfony/zipball/9b85ab476969b87bbe2253b69e265a9359b2f395",
-                "reference": "9b85ab476969b87bbe2253b69e265a9359b2f395",
+                "url": "https://api.github.com/repos/phpstan/phpstan-symfony/zipball/a12176b639dec54e8bfd0a5ebf5fc36ffe003b5d",
+                "reference": "a12176b639dec54e8bfd0a5ebf5fc36ffe003b5d",
                 "shasum": ""
             },
             "require": {
@@ -421,9 +422,9 @@
             ],
             "support": {
                 "issues": "https://github.com/phpstan/phpstan-symfony/issues",
-                "source": "https://github.com/phpstan/phpstan-symfony/tree/2.0.15"
+                "source": "https://github.com/phpstan/phpstan-symfony/tree/2.0.18"
             },
-            "time": "2026-02-26T10:15:59+00:00"
+            "time": "2026-05-18T14:51:49+00:00"
         }
     ],
     "packages-dev": [],
