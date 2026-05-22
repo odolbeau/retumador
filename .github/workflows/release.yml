@@ -20,7 +20,7 @@ jobs:
           php-version: 8.4
 
       - name: Download dependencies
-        uses: ramsey/composer-install@v3
+        uses: ramsey/composer-install@v4
         env:
           APP_ENV: prod
           APP_DEBUG: false

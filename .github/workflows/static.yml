@@ -17,10 +17,10 @@ jobs:
           php-version: 8.4
 
       - name: Download dependencies
-        uses: ramsey/composer-install@v3
+        uses: ramsey/composer-install@v4
 
       - name: Install PHPStan
-        uses: ramsey/composer-install@v3
+        uses: ramsey/composer-install@v4
         with:
           composer-options: "--working-dir=tools/phpstan"
 
@@ -41,7 +41,7 @@ jobs:
           php-version: 8.4
 
       - name: Install php-cs-fixer
-        uses: ramsey/composer-install@v3
+        uses: ramsey/composer-install@v4
         with:
           composer-options: "--working-dir=tools/php-cs-fixer"
 
@@ -62,7 +62,7 @@ jobs:
           php-version: 8.4
 
       - name: Install twig-cs-fixer
-        uses: ramsey/composer-install@v3
+        uses: ramsey/composer-install@v4
         with:
           composer-options: "--working-dir=tools/twig-cs-fixer"
 
@@ -83,7 +83,7 @@ jobs:
           php-version: 8.4
 
       - name: Download dependencies
-        uses: ramsey/composer-install@v3
+        uses: ramsey/composer-install@v4
 
       - name: Lint YAML files
         shell: bash
@@ -115,7 +115,7 @@ jobs:
           php-version: 8.4
 
       - name: Download dependencies
-        uses: ramsey/composer-install@v3
+        uses: ramsey/composer-install@v4
 
       - name: Check whether a PHP dependency is compromised
         shell: bash
